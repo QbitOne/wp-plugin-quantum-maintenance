@@ -90,7 +90,9 @@ class Quantum_Maintenance_Setting
         register_setting(
             self::$main_option_group,
             self::$main_option_name,
-            'sanitize'
+            [
+                'sanitize_callback' => ['Quantum_Maintenance_Setting', 'sanitize'],
+            ]
         );
     }
 
@@ -122,7 +124,7 @@ class Quantum_Maintenance_Setting
          * Text
          */
         add_settings_field(
-            'quantum_maintenance_field_slug',
+            'slug',
             esc_html__('Permalink', 'quantum-maintenance'),
             ['Quantum_Maintenance_Setting', 'display_field_text'],
             self::$main_page_slug,
@@ -196,8 +198,9 @@ class Quantum_Maintenance_Setting
 
         $type = 'text';
 
-        $format = '<input id="%4$s_%1$s" name="%4$s[%1$s]" type=%3$s value="%2$s"><br>';
-        $format .= '<label for="%4$s_%1$s">%5$s</label><br>';
+        $format = '<label>';
+        $format .= '<input name="%4$s[%1$s]" type=%3$s value="%2$s"><br>';
+        $format .= '%5$s</label><br>';
         printf($format, $id, $value, $type, $option_name, $labels);
     }
 
@@ -206,15 +209,16 @@ class Quantum_Maintenance_Setting
         return get_option(self::$main_option_name);
     }
 
-    // private static function sanitize($input)
-    // {
-    //     if (isset($input['quantum_maintenance_field_slug'])) {
+    public function sanitize($input)
+    {
+        if (isset($input['slug'])) {
 
-    //         // $input['slug'] = sanitize_text_field($input['slug']);
-    //         $input['quantum_maintenance_field_slug'] = 'hello';
-    //         // $input['quantum_maintenance_field_slug'] = 'hello';
-    //     }
+            $input['slug'] = sanitize_text_field($input['slug']);
+        }
 
-    //     // return $input;
-    // }
+        error_log('hello', 3, 'debug.log');
+
+
+        return $input;
+    }
 }
