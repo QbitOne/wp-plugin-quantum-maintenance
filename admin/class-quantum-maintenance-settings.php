@@ -65,13 +65,13 @@ class Quantum_Maintenance_Setting
             ['Quantum_Maintenance_Setting', 'display_menu_page']
         );
 
-        add_submenu_page(
-            self::$main_page_slug,
-            esc_html__('Einstellungen', 'quantum-maintenance'),
-            esc_html__('Einstellungen', 'quantum-maintenance'),
-            $needed_caps,
-            'quantum-maintenance-settings'
-        );
+        // add_submenu_page(
+        //     self::$main_page_slug,
+        //     esc_html__('Einstellungen', 'quantum-maintenance'),
+        //     esc_html__('Einstellungen', 'quantum-maintenance'),
+        //     $needed_caps,
+        //     'quantum-maintenance-settings'
+        // );
     }
 
     /**
