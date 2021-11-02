@@ -6,8 +6,8 @@
  * @link       https://qbitone.de/
  * @since      1.0.0
  *
- * @package    Quantum_Maintenance
- * @subpackage Quantum_Maintenance/includes
+ * @package    Quaintenance
+ * @subpackage Quaintenance/includes
  */
 
 /**
@@ -17,11 +17,11 @@
  * the plugin, and register them with the WordPress API. Call the
  * run function to execute the list of actions and filters.
  *
- * @package    Quantum_Maintenance
- * @subpackage Quantum_Maintenance/includes
+ * @package    Quaintenance
+ * @subpackage Quaintenance/includes
  * @author     Andreas Geyer <andreas@qbitone.de>
  */
-class Quantum_Maintenance_Loader
+class Quaintenance_Loader
 {
 
 	/**

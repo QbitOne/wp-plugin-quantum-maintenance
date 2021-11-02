@@ -6,8 +6,8 @@
  * @link       https://qbitone.de/
  * @since      1.0.0
  *
- * @package    Quantum_Maintenance
- * @subpackage Quantum_Maintenance/public
+ * @package    Quaintenance
+ * @subpackage Quaintenance/public
  */
 
 /**
@@ -16,11 +16,11 @@
  * Defines the plugin name, version, and two examples hooks for how to
  * enqueue the public-facing stylesheet and JavaScript.
  *
- * @package    Quantum_Maintenance
- * @subpackage Quantum_Maintenance/public
+ * @package    Quaintenance
+ * @subpackage Quaintenance/public
  * @author     Andreas Geyer <andreas@qbitone.de>
  */
-class Quantum_Maintenance_Public
+class Quaintenance_Public
 {
 
 	/**
@@ -67,15 +67,15 @@ class Quantum_Maintenance_Public
 		 * This function is provided for demonstration purposes only.
 		 *
 		 * An instance of this class should be passed to the run() function
-		 * defined in Quantum_Maintenance_Loader as all of the hooks are defined
+		 * defined in Quaintenance_Loader as all of the hooks are defined
 		 * in that particular class.
 		 *
-		 * The Quantum_Maintenance_Loader will then create the relationship
+		 * The Quaintenance_Loader will then create the relationship
 		 * between the defined hooks and the functions defined in this
 		 * class.
 		 */
 
-		wp_enqueue_style($this->plugin_name, plugin_dir_url(__FILE__) . 'css/quantum-maintenance-public.css', array(), $this->version, 'all');
+		wp_enqueue_style($this->plugin_name, plugin_dir_url(__FILE__) . 'css/quaintenance-public.css', array(), $this->version, 'all');
 	}
 
 	/**
@@ -90,15 +90,15 @@ class Quantum_Maintenance_Public
 		 * This function is provided for demonstration purposes only.
 		 *
 		 * An instance of this class should be passed to the run() function
-		 * defined in Quantum_Maintenance_Loader as all of the hooks are defined
+		 * defined in Quaintenance_Loader as all of the hooks are defined
 		 * in that particular class.
 		 *
-		 * The Quantum_Maintenance_Loader will then create the relationship
+		 * The Quaintenance_Loader will then create the relationship
 		 * between the defined hooks and the functions defined in this
 		 * class.
 		 */
 
-		wp_enqueue_script($this->plugin_name, plugin_dir_url(__FILE__) . 'js/quantum-maintenance-public.js', array('jquery'), $this->version, false);
+		wp_enqueue_script($this->plugin_name, plugin_dir_url(__FILE__) . 'js/quaintenance-public.js', array('jquery'), $this->version, false);
 	}
 
 	public function start_maintenance_mode(): void
@@ -106,7 +106,7 @@ class Quantum_Maintenance_Public
 		// global $pagenow;
 		// if ($pagenow !== 'wp-login.php' && !current_user_can('manage_options') && !is_admin()) {
 
-		$option = get_option('quantum-maintenance-main-option-name');
+		$option = get_option('quaintenance-main-option-name');
 
 		$slug = $option['slug'] ?? null;
 		$mode = $option['mode'] ?? '';
@@ -117,8 +117,8 @@ class Quantum_Maintenance_Public
 
 				header($_SERVER["SERVER_PROTOCOL"] . ' 503 Service Temporarily Unavailable', true, 503);
 				header('Content-Type: text/html; charset=utf-8');
-				if (file_exists(QUANTUM_MAINTENANCE_DIR . 'public/partials/quantum-maintenance-public-display.php')) {
-					require_once(QUANTUM_MAINTENANCE_DIR . 'public/partials/quantum-maintenance-public-display.php');
+				if (file_exists(QUAINTENANCE_DIR . 'public/partials/quaintenance-public-display.php')) {
+					require_once(QUAINTENANCE_DIR . 'public/partials/quaintenance-public-display.php');
 				}
 				die();
 			}
