@@ -117,6 +117,18 @@ class Quantum_Maintenance_Setting
             'quantum_maintenance_section_general',
             ['id' => 'mode']
         );
+
+        /**
+         * Text
+         */
+        add_settings_field(
+            'quantum_maintenance_field_slug',
+            esc_html__('Permalink', 'quantum-maintenance'),
+            ['Quantum_Maintenance_Setting', 'display_field_text'],
+            self::$main_page_slug,
+            'quantum_maintenance_section_general',
+            ['id' => 'slug']
+        );
     }
 
     public static function display_section_general(): void
@@ -170,4 +182,39 @@ class Quantum_Maintenance_Setting
         $format .= '<label for="%4$s_%1$s">%5$s</label><br>';
         printf($format, $id, 'enabled', $type, $option_name, $labels, $checked);
     }
+
+    public static function display_field_text($args): void
+    {
+        $options = self::get_option();
+        $option_name = self::$main_option_name;
+
+        $id = $args['id'] ?? '';
+
+        $value = isset($options[$id]) ? sanitize_text_field($options[$id]) : '';
+
+        $labels = esc_html__('Slug der Webseite', 'quantum-maintenance');
+
+        $type = 'text';
+
+        $format = '<input id="%4$s_%1$s" name="%4$s[%1$s]" type=%3$s value="%2$s"><br>';
+        $format .= '<label for="%4$s_%1$s">%5$s</label><br>';
+        printf($format, $id, $value, $type, $option_name, $labels);
+    }
+
+    private static function get_option()
+    {
+        return get_option(self::$main_option_name);
+    }
+
+    // private static function sanitize($input)
+    // {
+    //     if (isset($input['quantum_maintenance_field_slug'])) {
+
+    //         // $input['slug'] = sanitize_text_field($input['slug']);
+    //         $input['quantum_maintenance_field_slug'] = 'hello';
+    //         // $input['quantum_maintenance_field_slug'] = 'hello';
+    //     }
+
+    //     // return $input;
+    // }
 }
