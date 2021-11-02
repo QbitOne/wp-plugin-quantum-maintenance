@@ -89,12 +89,16 @@ class Quantum_Maintenance_Setting
     {
         register_setting(
             self::$main_option_group,
-            self::$main_option_name
+            self::$main_option_name,
+            'sanitize'
         );
     }
 
     public static function add_settings_objects(): void
     {
+        /**
+         * Section
+         */
         add_settings_section(
             'quantum_maintenance_section_general',
             esc_html__('Allgemein', 'quantum-maintenance'),
@@ -102,6 +106,9 @@ class Quantum_Maintenance_Setting
             self::$main_page_slug
         );
 
+        /**
+         * Checkbox
+         */
         add_settings_field(
             'quantum_maintenance_field_mode',
             esc_html__('Maintenance Modus', 'quantum-maintenance'),
