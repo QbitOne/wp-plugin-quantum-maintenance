@@ -105,13 +105,23 @@ class Quantum_Maintenance_Public
 	{
 		// global $pagenow;
 		// if ($pagenow !== 'wp-login.php' && !current_user_can('manage_options') && !is_admin()) {
-		if (is_page('impressum') && !is_admin() && !current_user_can('manage_options')) {
-			header($_SERVER["SERVER_PROTOCOL"] . ' 503 Service Temporarily Unavailable', true, 503);
-			header('Content-Type: text/html; charset=utf-8');
-			if (file_exists(QUANTUM_MAINTENANCE_DIR . 'public/partials/quantum-maintenance-public-display.php')) {
-				require_once(QUANTUM_MAINTENANCE_DIR . 'public/partials/quantum-maintenance-public-display.php');
+
+		$option = get_option('quantum-maintenance-main-option-name');
+
+		$slug = $option['slug'] ?? null;
+		$mode = $option['mode'] ?? '';
+
+		if (!is_admin() && !current_user_can('manage_options')) {
+
+			if (!is_null($slug) && is_page($slug) && $mode === 'enabled') {
+
+				header($_SERVER["SERVER_PROTOCOL"] . ' 503 Service Temporarily Unavailable', true, 503);
+				header('Content-Type: text/html; charset=utf-8');
+				if (file_exists(QUANTUM_MAINTENANCE_DIR . 'public/partials/quantum-maintenance-public-display.php')) {
+					require_once(QUANTUM_MAINTENANCE_DIR . 'public/partials/quantum-maintenance-public-display.php');
+				}
+				die();
 			}
-			die();
 		}
 	}
 }
