@@ -28,7 +28,7 @@ class Quaintenance_Setting
      * @access  private
      * @since   1.0.0
      */
-    private static $main_page_slug = 'quaintenance-main';
+    private static $main_page_slug = 'main';
 
     private static $main_option_group = 'quaintenance-main-option-group';
     private static $main_option_name = 'quaintenance-main-option-name';
