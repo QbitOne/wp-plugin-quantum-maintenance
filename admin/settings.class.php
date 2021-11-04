@@ -6,8 +6,8 @@
  * @link       https://qbitone.de/
  * @since      1.0.0
  *
- * @package    Quantum_Maintenance
- * @subpackage Quantum_Maintenance/admin/setting
+ * @package    Quaintenance
+ * @subpackage Quaintenance/admin/setting
  */
 
 /**
@@ -15,11 +15,11 @@
  *
  * Registers the settings of the plugin.
  *
- * @package    Quantum_Maintenance
- * @subpackage Quantum_Maintenance/admin/setting
+ * @package    Quaintenance
+ * @subpackage Quaintenance/admin/setting
  * @author     Andreas Geyer <andreas@qbitone.de>
  */
-class Quantum_Maintenance_Setting
+class Quaintenance_Setting
 {
     /**
      * The main page slug
@@ -28,10 +28,10 @@ class Quantum_Maintenance_Setting
      * @access  private
      * @since   1.0.0
      */
-    private static $main_page_slug = 'quantum-maintenance-main';
+    private static $main_page_slug = 'main';
 
-    private static $main_option_group = 'quantum-maintenance-main-option-group';
-    private static $main_option_name = 'quantum-maintenance-main-option-name';
+    private static $main_option_group = 'quaintenance-main-option-group';
+    private static $main_option_name = 'quaintenance-main-option-name';
 
     /**
      * Initialize the class and set its properties.
@@ -58,20 +58,20 @@ class Quantum_Maintenance_Setting
         $needed_caps = 'manage_options';
 
         add_menu_page(
-            esc_html__('Maintenance', 'quantum-maintenance'),
-            esc_html__('Maintenance', 'quantum-maintenance'),
+            esc_html__('Maintenance', 'quaintenance'),
+            esc_html__('Maintenance', 'quaintenance'),
             $needed_caps,
             self::$main_page_slug,
-            ['Quantum_Maintenance_Setting', 'display_menu_page']
+            ['Quaintenance_Setting', 'display_menu_page']
         );
 
-        add_submenu_page(
-            self::$main_page_slug,
-            esc_html__('Einstellungen', 'quantum-maintenance'),
-            esc_html__('Einstellungen', 'quantum-maintenance'),
-            $needed_caps,
-            'quantum-maintenance-settings'
-        );
+        // add_submenu_page(
+        //     self::$main_page_slug,
+        //     esc_html__('Einstellungen', 'quaintenance'),
+        //     esc_html__('Einstellungen', 'quaintenance'),
+        //     $needed_caps,
+        //     'quaintenance-settings'
+        // );
     }
 
     /**
@@ -82,39 +82,60 @@ class Quantum_Maintenance_Setting
     public static function display_menu_page(): void
     {
         $slug = self::$main_page_slug;
-        require_once QUANTUM_MAINTENANCE_DIR . "/admin/partials/$slug.php";
+        require_once QUAINTENANCE_DIR . "/admin/partials/$slug.php";
     }
 
     public static function register_settings(): void
     {
         register_setting(
             self::$main_option_group,
-            self::$main_option_name
+            self::$main_option_name,
+            [
+                'sanitize_callback' => ['Quaintenance_Setting', 'sanitize'],
+            ]
         );
     }
 
     public static function add_settings_objects(): void
     {
+        /**
+         * Section
+         */
         add_settings_section(
-            'quantum_maintenance_section_general',
-            esc_html__('Allgemein', 'quantum-maintenance'),
-            ['Quantum_Maintenance_Setting', 'display_section_general'],
+            'Quaintenance_section_general',
+            esc_html__('Allgemein', 'quaintenance'),
+            ['Quaintenance_Setting', 'display_section_general'],
             self::$main_page_slug
         );
 
+        /**
+         * Checkbox
+         */
         add_settings_field(
-            'quantum_maintenance_field_mode',
-            esc_html__('Maintenance Modus', 'quantum-maintenance'),
-            ['Quantum_Maintenance_Setting', 'display_field_checkbox'],
+            'Quaintenance_field_mode',
+            esc_html__('Maintenance Modus', 'quaintenance'),
+            ['Quaintenance_Setting', 'display_field_checkbox'],
             self::$main_page_slug,
-            'quantum_maintenance_section_general',
+            'Quaintenance_section_general',
             ['id' => 'mode']
+        );
+
+        /**
+         * Text
+         */
+        add_settings_field(
+            'slug',
+            esc_html__('Permalink', 'quaintenance'),
+            ['Quaintenance_Setting', 'display_field_text'],
+            self::$main_page_slug,
+            'Quaintenance_section_general',
+            ['id' => 'slug']
         );
     }
 
     public static function display_section_general(): void
     {
-        esc_html_e('Allgemeine Einstellungen zum Maintenance Modus', 'quantum-maintenance');
+        esc_html_e('Allgemeine Einstellungen zum Maintenance Modus', 'quaintenance');
     }
 
     public static function display_field_radio($args): void
@@ -127,8 +148,8 @@ class Quantum_Maintenance_Setting
         $selected_option = isset($options[$id]) ? sanitize_text_field($options[$id]) : '';
 
         $radio_options = [
-            'enabled'  => esc_html__('aktivieren', 'quantum-maintenance'),
-            'disabled' => esc_html__('deaktivieren', 'quantum-maintenance')
+            'enabled'  => esc_html__('aktivieren', 'quaintenance'),
+            'disabled' => esc_html__('deaktivieren', 'quaintenance')
         ];
 
         $type = 'radio';
@@ -153,7 +174,7 @@ class Quantum_Maintenance_Setting
 
         $value = isset($options[$id]) ? sanitize_text_field($options[$id]) : '';
 
-        $labels = esc_html__('aktivieren/deaktivieren', 'quantum-maintenance');
+        $labels = esc_html__('aktivieren/deaktivieren', 'quaintenance');
 
         $type = 'checkbox';
 
@@ -162,5 +183,42 @@ class Quantum_Maintenance_Setting
         $format = '<input id="%4$s_%1$s" name="%4$s[%1$s]" type=%3$s value="%2$s" %6$s><br>';
         $format .= '<label for="%4$s_%1$s">%5$s</label><br>';
         printf($format, $id, 'enabled', $type, $option_name, $labels, $checked);
+    }
+
+    public static function display_field_text($args): void
+    {
+        $options = self::get_option();
+        $option_name = self::$main_option_name;
+
+        $id = $args['id'] ?? '';
+
+        $value = isset($options[$id]) ? sanitize_text_field($options[$id]) : '';
+
+        $labels = esc_html__('Slug der Webseite', 'quaintenance');
+
+        $type = 'text';
+
+        $format = '<label>';
+        $format .= '<input name="%4$s[%1$s]" type=%3$s value="%2$s"><br>';
+        $format .= '%5$s</label><br>';
+        printf($format, $id, $value, $type, $option_name, $labels);
+    }
+
+    private static function get_option()
+    {
+        return get_option(self::$main_option_name);
+    }
+
+    public function sanitize($input)
+    {
+        if (isset($input['slug'])) {
+
+            $input['slug'] = sanitize_text_field($input['slug']);
+        }
+
+        error_log('hello', 3, 'debug.log');
+
+
+        return $input;
     }
 }

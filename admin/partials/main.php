@@ -8,8 +8,8 @@
  * @link       https://qbitone.de/
  * @since      1.0.0
  *
- * @package    Quantum_Maintenance
- * @subpackage Quantum_Maintenance/admin/partials
+ * @package    Quaintenance
+ * @subpackage Quaintenance/admin/partials
  */
 
 if (!defined('ABSPATH')) exit; // Exit if accessed directly

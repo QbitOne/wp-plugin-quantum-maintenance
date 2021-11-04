@@ -9,8 +9,8 @@
  * @link       https://qbitone.de/
  * @since      1.0.0
  *
- * @package    Quantum_Maintenance
- * @subpackage Quantum_Maintenance/includes
+ * @package    Quaintenance
+ * @subpackage Quaintenance/includes
  */
 
 /**
@@ -23,11 +23,11 @@
  * version of the plugin.
  *
  * @since      1.0.0
- * @package    Quantum_Maintenance
- * @subpackage Quantum_Maintenance/includes
+ * @package    Quaintenance
+ * @subpackage Quaintenance/includes
  * @author     Andreas Geyer <andreas@qbitone.de>
  */
-class Quantum_Maintenance
+class Quaintenance
 {
 
 	/**
@@ -36,7 +36,7 @@ class Quantum_Maintenance
 	 *
 	 * @since    1.0.0
 	 * @access   protected
-	 * @var      Quantum_Maintenance_Loader    $loader    Maintains and registers all hooks for the plugin.
+	 * @var      Quaintenance_Loader    $loader    Maintains and registers all hooks for the plugin.
 	 */
 	protected $loader;
 
@@ -69,12 +69,12 @@ class Quantum_Maintenance
 	 */
 	public function __construct()
 	{
-		if (defined('QUANTUM_MAINTENANCE_VERSION')) {
-			$this->version = QUANTUM_MAINTENANCE_VERSION;
+		if (defined('Quaintenance_VERSION')) {
+			$this->version = QUAINTENANCE_VERSION;
 		} else {
 			$this->version = '1.0.0';
 		}
-		$this->plugin_name = 'quantum-maintenance';
+		$this->plugin_name = 'quaintenance';
 
 		$this->load_dependencies();
 		$this->set_locale();
@@ -87,10 +87,10 @@ class Quantum_Maintenance
 	 *
 	 * Include the following files that make up the plugin:
 	 *
-	 * - Quantum_Maintenance_Loader. Orchestrates the hooks of the plugin.
-	 * - Quantum_Maintenance_i18n. Defines internationalization functionality.
-	 * - Quantum_Maintenance_Admin. Defines all hooks for the admin area.
-	 * - Quantum_Maintenance_Public. Defines all hooks for the public side of the site.
+	 * - Quaintenance_Loader. Orchestrates the hooks of the plugin.
+	 * - Quaintenance_i18n. Defines internationalization functionality.
+	 * - Quaintenance_Admin. Defines all hooks for the admin area.
+	 * - Quaintenance_Public. Defines all hooks for the public side of the site.
 	 *
 	 * Create an instance of the loader which will be used to register the hooks
 	 * with WordPress.
@@ -105,37 +105,37 @@ class Quantum_Maintenance
 		 * The class responsible for orchestrating the actions and filters of the
 		 * core plugin.
 		 */
-		require_once QUANTUM_MAINTENANCE_DIR . 'includes/class-quantum-maintenance-loader.php';
+		require_once QUAINTENANCE_DIR . 'includes/loader.class.php';
 
 		/**
 		 * The class responsible for defining internationalization functionality
 		 * of the plugin.
 		 */
-		require_once QUANTUM_MAINTENANCE_DIR . 'includes/class-quantum-maintenance-i18n.php';
+		require_once QUAINTENANCE_DIR . 'includes/i18n.class.php';
 
 		/**
 		 * The class responsible for defining all actions that occur in the admin area.
 		 */
-		require_once QUANTUM_MAINTENANCE_DIR . 'admin/class-quantum-maintenance-admin.php';
+		require_once QUAINTENANCE_DIR . 'admin/admin.class.php';
 
 		/**
 		 * The class responsible for defining all settings that occur in the admin area.
 		 */
-		require_once QUANTUM_MAINTENANCE_DIR . 'admin/class-quantum-maintenance-settings.php';
+		require_once QUAINTENANCE_DIR . 'admin/settings.class.php';
 
 		/**
 		 * The class responsible for defining all actions that occur in the public-facing
 		 * side of the site.
 		 */
-		require_once QUANTUM_MAINTENANCE_DIR . 'public/class-quantum-maintenance-public.php';
+		require_once QUAINTENANCE_DIR . 'public/public.class.php';
 
-		$this->loader = new Quantum_Maintenance_Loader();
+		$this->loader = new Quaintenance_Loader();
 	}
 
 	/**
 	 * Define the locale for this plugin for internationalization.
 	 *
-	 * Uses the Quantum_Maintenance_i18n class in order to set the domain and to register the hook
+	 * Uses the Quaintenance_i18n class in order to set the domain and to register the hook
 	 * with WordPress.
 	 *
 	 * @since    1.0.0
@@ -144,7 +144,7 @@ class Quantum_Maintenance
 	private function set_locale()
 	{
 
-		$plugin_i18n = new Quantum_Maintenance_i18n();
+		$plugin_i18n = new Quaintenance_i18n();
 
 		$this->loader->add_action('plugins_loaded', $plugin_i18n, 'load_plugin_textdomain');
 	}
@@ -159,7 +159,7 @@ class Quantum_Maintenance
 	private function define_admin_hooks()
 	{
 
-		$plugin_admin = new Quantum_Maintenance_Admin($this->get_plugin_name(), $this->get_version());
+		$plugin_admin = new Quaintenance_Admin($this->get_plugin_name(), $this->get_version());
 
 		$this->loader->add_action('admin_enqueue_scripts', $plugin_admin, 'enqueue_styles');
 		$this->loader->add_action('admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts');
@@ -178,7 +178,7 @@ class Quantum_Maintenance
 	private function define_public_hooks()
 	{
 
-		$plugin_public = new Quantum_Maintenance_Public($this->get_plugin_name(), $this->get_version());
+		$plugin_public = new Quaintenance_Public($this->get_plugin_name(), $this->get_version());
 
 		$this->loader->add_action('wp_enqueue_scripts', $plugin_public, 'enqueue_styles');
 		$this->loader->add_action('wp_enqueue_scripts', $plugin_public, 'enqueue_scripts');
@@ -213,7 +213,7 @@ class Quantum_Maintenance
 	 * The reference to the class that orchestrates the hooks with the plugin.
 	 *
 	 * @since     1.0.0
-	 * @return    Quantum_Maintenance_Loader    Orchestrates the hooks of the plugin.
+	 * @return    Quaintenance_Loader    Orchestrates the hooks of the plugin.
 	 */
 	public function get_loader()
 	{

@@ -22,10 +22,10 @@
  * @link       https://qbitone.de/
  * @since      1.0.0
  *
- * @package    Quantum_Maintenance
+ * @package    Quaintenance
  */
 
 // If uninstall not called from WordPress, then exit.
-if ( ! defined( 'WP_UNINSTALL_PLUGIN' ) ) {
+if (!defined('WP_UNINSTALL_PLUGIN')) {
 	exit;
 }

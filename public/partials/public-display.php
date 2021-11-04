@@ -8,8 +8,8 @@
  * @link       https://qbitone.de/
  * @since      1.0.0
  *
- * @package    Quantum_Maintenance
- * @subpackage Quantum_Maintenance/public/partials
+ * @package    Quaintenance
+ * @subpackage Quaintenance/public/partials
  */
 
 get_header();

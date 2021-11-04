@@ -9,8 +9,8 @@
  * @link       https://qbitone.de/
  * @since      1.0.0
  *
- * @package    Quantum_Maintenance
- * @subpackage Quantum_Maintenance/includes
+ * @package    Quaintenance
+ * @subpackage Quaintenance/includes
  */
 
 /**
@@ -20,11 +20,11 @@
  * so that it is ready for translation.
  *
  * @since      1.0.0
- * @package    Quantum_Maintenance
- * @subpackage Quantum_Maintenance/includes
+ * @package    Quaintenance
+ * @subpackage Quaintenance/includes
  * @author     Andreas Geyer <andreas@qbitone.de>
  */
-class Quantum_Maintenance_i18n
+class Quaintenance_i18n
 {
 
 	/**
@@ -36,9 +36,9 @@ class Quantum_Maintenance_i18n
 	{
 
 		load_plugin_textdomain(
-			'quantum-maintenance',
+			'quaintenance',
 			false,
-			dirname(dirname(QUANTUM_MAINTENANCE_DIR)) . '/languages/'
+			dirname(dirname(QUAINTENANCE_DIR)) . '/languages/'
 		);
 	}
 }

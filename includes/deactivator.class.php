@@ -6,8 +6,8 @@
  * @link       https://qbitone.de/
  * @since      1.0.0
  *
- * @package    Quantum_Maintenance
- * @subpackage Quantum_Maintenance/includes
+ * @package    Quaintenance
+ * @subpackage Quaintenance/includes
  */
 
 /**
@@ -16,11 +16,11 @@
  * This class defines all code necessary to run during the plugin's deactivation.
  *
  * @since      1.0.0
- * @package    Quantum_Maintenance
- * @subpackage Quantum_Maintenance/includes
+ * @package    Quaintenance
+ * @subpackage Quaintenance/includes
  * @author     Andreas Geyer <andreas@qbitone.de>
  */
-class Quantum_Maintenance_Deactivator
+class Quaintenance_Deactivator
 {
 
 	/**
