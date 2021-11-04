@@ -38,21 +38,21 @@ define('QUAINTENANCE_DIR', trailingslashit(plugin_dir_path(__FILE__)));
 
 /**
  * The code that runs during plugin activation.
- * This action is documented in includes/class-quaintenance-activator.php
+ * This action is documented in includes/activator.class.php
  */
 function activate_Quaintenance()
 {
-	require_once QUAINTENANCE_DIR . 'includes/class-quaintenance-activator.php';
+	require_once QUAINTENANCE_DIR . 'includes/activator.class.php';
 	Quaintenance_Activator::activate();
 }
 
 /**
  * The code that runs during plugin deactivation.
- * This action is documented in includes/class-quaintenance-deactivator.php
+ * This action is documented in includes/deactivator.class.php
  */
 function deactivate_Quaintenance()
 {
-	require_once QUAINTENANCE_DIR . 'includes/class-quaintenance-deactivator.php';
+	require_once QUAINTENANCE_DIR . 'includes/deactivator.class.php';
 	Quaintenance_Deactivator::deactivate();
 }
 
@@ -63,7 +63,7 @@ register_deactivation_hook(__FILE__, 'deactivate_Quaintenance');
  * The core plugin class that is used to define internationalization,
  * admin-specific hooks, and public-facing site hooks.
  */
-require QUAINTENANCE_DIR . 'includes/class-quaintenance.php';
+require QUAINTENANCE_DIR . 'includes/quaintenance.class.php';
 
 /**
  * Begins execution of the plugin.
