@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Register all actions and filters for the plugin
+ * Register all actions and filters for the plugin.
  *
  * @link       https://qbitone.de/
  * @since      1.0.0
