@@ -74,9 +74,9 @@ require QUAINTENANCE_DIR . 'includes/quaintenance.class.php';
  *
  * @since    1.0.0
  */
-function run_Quaintenance()
+function run_quaintenance()
 {
 	$plugin = new Quaintenance();
 	$plugin->run();
 }
-run_Quaintenance();
+run_quaintenance();
