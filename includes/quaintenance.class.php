@@ -1,7 +1,7 @@
 <?php
 
 /**
- * The file that defines the core plugin class
+ * The file that defines the core plugin class.
  *
  * A class definition that includes attributes and functions used across both the
  * public-facing side of the site and the admin area.
@@ -29,7 +29,6 @@
  */
 class Quaintenance
 {
-
 	/**
 	 * The loader that's responsible for maintaining and registering all hooks that power
 	 * the plugin.
@@ -69,7 +68,7 @@ class Quaintenance
 	 */
 	public function __construct()
 	{
-		if (defined('Quaintenance_VERSION')) {
+		if (defined('QUAINTENANCE_VERSION')) {
 			$this->version = QUAINTENANCE_VERSION;
 		} else {
 			$this->version = '1.0.0';
