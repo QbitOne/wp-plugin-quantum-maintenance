@@ -128,6 +128,7 @@ class Quaintenance
 		 */
 		require_once QUAINTENANCE_DIR . 'public/public.class.php';
 
+
 		$this->loader = new Quaintenance_Loader();
 	}
 
