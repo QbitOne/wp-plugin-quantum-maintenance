@@ -1,5 +1,21 @@
 {
     "require": {
         "yahnis-elsts/plugin-update-checker": "^4.11"
+    },
+    "archive": {
+        "name": "quaintenance",
+        "exclude": [
+            ".*",
+            "!vendor/",
+            "node_modules/",
+            "*.yml",
+            "*.dist",
+            "postcss/",
+            "gulpfile.js",
+            "*.json",
+            "*.lock",
+            "dist/",
+            "styleguide/"
+        ]
     }
 }
