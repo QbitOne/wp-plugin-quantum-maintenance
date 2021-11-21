@@ -62,7 +62,7 @@ class Quaintenance_Admin
 
 		$this->plugin_name = $plugin_name;
 		$this->version = $version;
-		$this->setting = new Quaintenance_Setting();
+		$this->setting = new Quaintenance_Setting($plugin_name, $version);
 	}
 
 	/**

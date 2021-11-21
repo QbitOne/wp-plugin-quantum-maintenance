@@ -32,7 +32,7 @@ if (!defined('WPINC')) {
  * Currently plugin version.
  * @link https://semver.org
  */
-define('QUAINTENANCE_VERSION', '1.0.0');
+define('QUAINTENANCE_VERSION', '1.0.1');
 
 define('QUAINTENANCE_DIR', trailingslashit(plugin_dir_path(__FILE__)));
 
