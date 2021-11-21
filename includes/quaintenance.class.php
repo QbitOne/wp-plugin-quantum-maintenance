@@ -40,6 +40,13 @@ class Quaintenance
 	protected $loader;
 
 	/**
+	 * The update checker for this plugin.
+	 *
+	 * @var Quaintenance_Update_Checker $update_checker The update checker for this plugin.
+	 */
+	protected $update_checker;
+
+	/**
 	 * The unique identifier of this plugin.
 	 *
 	 * @since    1.0.0
@@ -79,6 +86,7 @@ class Quaintenance
 		$this->set_locale();
 		$this->define_admin_hooks();
 		$this->define_public_hooks();
+		$this->init_update_checker();
 	}
 
 	/**
@@ -111,6 +119,11 @@ class Quaintenance
 		 * of the plugin.
 		 */
 		require_once QUAINTENANCE_DIR . 'includes/i18n.class.php';
+
+		/**
+		 * The class responsible for plugin updates.
+		 */
+		require_once QUAINTENANCE_DIR . 'includes/update-checker.class.php';
 
 		/**
 		 * The class responsible for defining all actions that occur in the admin area.
@@ -229,5 +242,10 @@ class Quaintenance
 	public function get_version()
 	{
 		return $this->version;
+	}
+
+	public function init_update_checker()
+	{
+		$this->update_checker = new Quaintenance_Update_Checker();
 	}
 }

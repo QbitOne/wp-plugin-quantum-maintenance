@@ -19,26 +19,26 @@ if (!class_exists('Quaintenance_Update_Checker')) :
          *
          * @var string
          */
-        private static $vendor_file = QUAINTENANCE_DIR . 'vendor/yahnis-elsts/plugin-update-checker/plugin-update-checker.php';
+        private $vendor_file = QUAINTENANCE_DIR . 'vendor/yahnis-elsts/plugin-update-checker/plugin-update-checker.php';
 
         /**
          * Remote path for the theme meta data
          *
          * @var string
          */
-        private static $remote_path = 'https://qbitone.de/quaintenance.json';
+        private $remote_path = 'https://qbitone.de/quaintenance.json';
 
         /**
          * Constructor
          */
         public function __construct()
         {
-            if (file_exists(self::$vendor_file)) {
+            if (file_exists($this->vendor_file)) {
 
-                require self::$vendor_file;
+                require $this->vendor_file;
 
                 $myUpdateChecker = Puc_v4_Factory::buildUpdateChecker(
-                    self::$remote_path,
+                    $this->remote_path,
                     QUAINTENANCE_DIR . 'quaintenance.php',
                     'quaintenance'
                 );
