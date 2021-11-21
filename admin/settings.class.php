@@ -22,6 +22,24 @@
 class Quaintenance_Setting
 {
     /**
+     * The ID of this plugin.
+     *
+     * @since    1.0.1
+     * @access   private
+     * @var      string    $plugin_name    The ID of this plugin.
+     */
+    private $plugin_name;
+
+    /**
+     * The version of this plugin.
+     *
+     * @since    1.0.1
+     * @access   private
+     * @var      string    $version    The current version of this plugin.
+     */
+    private $version;
+
+    /**
      * The main page slug
      *
      * @var     string
@@ -30,21 +48,36 @@ class Quaintenance_Setting
      */
     private $main_page_slug = 'main';
 
+    /**
+     * The option group name for Settings API
+     *
+     * @var string
+     * @access private
+     * @since 1.0.0
+     */
     private $main_option_group = 'quaintenance-main-option-group';
+
+    /**
+     * The option name for Settings API
+     *
+     * @var string
+     * @access private
+     * @since 1.0.0
+     */
     private $main_option_name = 'quaintenance-main-option-name';
 
     /**
      * Initialize the class and set its properties.
      *
-     * @since   1.0.0
      * @param   string    $plugin_name       The name of this plugin.
      * @param   string    $version    The version of this plugin.
+     * @since   1.0.1
      */
-    // public function __construct($plugin_name, $version)
-    // {
-    //     $this->plugin_name = $plugin_name;
-    //     $this->version = $version;
-    // }
+    public function __construct($plugin_name, $version)
+    {
+        $this->plugin_name = $plugin_name;
+        $this->version = $version;
+    }
 
     /**
      * Adds all menus.

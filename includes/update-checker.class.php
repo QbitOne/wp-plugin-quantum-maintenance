@@ -15,6 +15,24 @@ if (!class_exists('Quaintenance_Update_Checker')) :
     class Quaintenance_Update_Checker
     {
         /**
+         * The ID of this plugin.
+         *
+         * @since    1.0.1
+         * @access   private
+         * @var      string    $plugin_name    The ID of this plugin.
+         */
+        private $plugin_name;
+
+        /**
+         * The version of this plugin.
+         *
+         * @since    1.0.1
+         * @access   private
+         * @var      string    $version    The current version of this plugin.
+         */
+        private $version;
+
+        /**
          * Vendor file for update checker
          *
          * @var string
@@ -29,9 +47,27 @@ if (!class_exists('Quaintenance_Update_Checker')) :
         private $remote_path = 'https://qbitone.de/quaintenance.json';
 
         /**
-         * Constructor
+         * Initialize the class and set its properties.
+         *
+         * @param   string    $plugin_name       The name of this plugin.
+         * @param   string    $version    The version of this plugin.
+         * @since   1.0.1
          */
-        public function __construct()
+        public function __construct($plugin_name, $version)
+        {
+            $this->plugin_name = $plugin_name;
+            $this->version = $version;
+
+            $this->init();
+        }
+
+        /**
+         * Initialize the vendor update checker.
+         *
+         * @return void
+         * @since 1.0.1
+         */
+        public function init(): void
         {
             if (file_exists($this->vendor_file)) {
 
@@ -56,11 +92,12 @@ if (!class_exists('Quaintenance_Update_Checker')) :
          * 
          * @param none
          * @return void
+         * @since 1.0.0
          */
         function action_admin_notices_no_composer(): void
         {
             echo '<div class="notice notice-info is-dismissible">';
-            echo '<p>Composer ist nicht installiert!</p>';
+            printf('<p>Composer ist nicht installiert! (%s v%s)</p>', $this->plugin_name, $this->version);
             echo '</div>';
         }
 
@@ -69,11 +106,12 @@ if (!class_exists('Quaintenance_Update_Checker')) :
          * 
          * @param none
          * @return void
+         * @since 1.0.0
          */
         function action_admin_notices_activ_plugin_checker(): void
         {
             echo '<div class="notice notice-info is-dismissible">';
-            echo '<p>Update Checker ist aktiv</p>';
+            printf('<p>Update Checker ist aktiv! (%s v%s)</p>', $this->plugin_name, $this->version);
             echo '</div>';
         }
     }

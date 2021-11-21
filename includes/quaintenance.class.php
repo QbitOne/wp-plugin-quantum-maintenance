@@ -246,6 +246,6 @@ class Quaintenance
 
 	public function init_update_checker()
 	{
-		$this->update_checker = new Quaintenance_Update_Checker();
+		$this->update_checker = new Quaintenance_Update_Checker($this->get_plugin_name(), $this->get_version());
 	}
 }
