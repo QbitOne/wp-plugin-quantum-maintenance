@@ -114,7 +114,7 @@ class Quaintenance_Public
 		if (!($mode === 'enabled')) return;
 		if (is_admin() || current_user_can('manage_options')) return;
 
-		if (empty($slug) || is_page($slug)) :
+		if (empty($slug) || is_singular($slug)) :
 			$this->deliver_maintenance_mode();
 			die();
 		endif;
