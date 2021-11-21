@@ -1,0 +1,29 @@
+# Ignore npm and composer modules
+node_modules
+vendor
+
+# ignore packaged files
+*.7z
+*.dmg
+*.gz
+*.iso
+*.jar
+*.rar
+*.tar
+*.zip
+
+# ignore compiled files
+*.com
+*.class
+*.dll
+*.exe
+*.o
+*.so
+
+# ignore log files and databases
+*.log
+*.sql
+*.sqlite
+
+# ignore macOS specific files
+.DS_Store
