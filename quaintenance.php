@@ -14,7 +14,7 @@
  * Plugin Name:       Quaintenance
  * Plugin URI:        https://qbitone.de/
  * Description:       Custom Maintenance Mode
- * Version:           1.0.0
+ * Version:           1.0.2
  * Author:            Andreas Geyer
  * Author URI:        https://qbitone.de/
  * License:           GPL-2.0+
