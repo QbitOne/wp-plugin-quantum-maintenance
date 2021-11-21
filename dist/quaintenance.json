@@ -1,5 +1,12 @@
 {
-	"version": "1.0.1",
+	"name": "Quaintenance",
+	"slug": "quaintenance",
+	"version": "1.0.2",
 	"details_url": "https://qbitone.de/",
-	"download_url": "https://qbitone.de/quaintenance.zip"
+	"download_url": "https://qbitone.de/quaintenance.zip",
+	"author": "Andreas Geyer",
+	"last_updated": "2021-11-21",
+	"sections" : {
+		"description" : "Custom Maintenance Mode"
+	}
 }
