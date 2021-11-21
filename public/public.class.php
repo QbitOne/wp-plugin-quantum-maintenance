@@ -75,7 +75,7 @@ class Quaintenance_Public
 		 * class.
 		 */
 
-		wp_enqueue_style($this->plugin_name, plugin_dir_url(__FILE__) . 'css/quaintenance-public.css', array(), $this->version, 'all');
+		// wp_enqueue_style($this->plugin_name, plugin_dir_url(__FILE__) . 'css/quaintenance-public.css', array(), $this->version, 'all');
 	}
 
 	/**
@@ -98,7 +98,7 @@ class Quaintenance_Public
 		 * class.
 		 */
 
-		wp_enqueue_script($this->plugin_name, plugin_dir_url(__FILE__) . 'js/quaintenance-public.js', array('jquery'), $this->version, false);
+		// wp_enqueue_script($this->plugin_name, plugin_dir_url(__FILE__) . 'js/quaintenance-public.js', array('jquery'), $this->version, false);
 	}
 
 	public function start_maintenance_mode(): void
