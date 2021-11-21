@@ -4,7 +4,7 @@ Donate link:
 Tags: maintenance
 Requires at least: 5.0
 Tested up to: 5.8
-Stable tag: 1.0.0
+Stable tag: 1.0.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -12,7 +12,7 @@ Easy maintenance mode plugin for your website.
 
 == Description ==
 
-This plugin helps you managing maintenace work on your website. You can activate the maintenace mode for particular webpages.
+This plugin helps you managing maintenance work on your website. You can activate the maintenace mode for particular webpages.
 
 == Installation ==
 
@@ -24,6 +24,12 @@ This plugin helps you managing maintenace work on your website. You can activate
 == Screenshots ==
 
 == Changelog ==
+
+= 1.0.2 =
+* fixes the plugin update checker
+
+= 1.0.1 =
+* minor changes
 
 = 1.0.0 =
 * Project start
