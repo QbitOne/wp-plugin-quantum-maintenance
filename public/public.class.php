@@ -111,11 +111,13 @@ class Quaintenance_Public
 		$slug = $option['slug'] ?? '';
 		$mode = $option['mode'] ?? '';
 
-		global $post;
-		$current_slug = $post->post_name;
 
 		if (!($mode === 'enabled')) return;
 		if (is_admin() || current_user_can('manage_options')) return;
+
+
+		global $post;
+		$current_slug = $post->post_name;
 
 		if (empty($slug) || $slug === $current_slug) :
 			$this->deliver_maintenance_mode();
