@@ -23,10 +23,10 @@ if (!defined('ABSPATH')) exit; // Exit if accessed directly
         <?php
 
         // output security fields (hidden setting fields)
-        settings_fields(self::$main_option_group); // should match the value defined in register_setting()
+        settings_fields($this->main_option_group); // should match the value defined in register_setting()
 
         // output setting sections
-        do_settings_sections(self::$main_page_slug);
+        do_settings_sections($this->main_page_slug);
 
         submit_button();
 

@@ -28,10 +28,10 @@ class Quaintenance_Setting
      * @access  private
      * @since   1.0.0
      */
-    private static $main_page_slug = 'main';
+    private $main_page_slug = 'main';
 
-    private static $main_option_group = 'quaintenance-main-option-group';
-    private static $main_option_name = 'quaintenance-main-option-name';
+    private $main_option_group = 'quaintenance-main-option-group';
+    private $main_option_name = 'quaintenance-main-option-name';
 
     /**
      * Initialize the class and set its properties.
@@ -53,7 +53,7 @@ class Quaintenance_Setting
      * @access  public
      * @since   1.0.0
      */
-    public static function add_menus(): void
+    public function add_menus(): void
     {
         $needed_caps = 'manage_options';
 
@@ -61,12 +61,12 @@ class Quaintenance_Setting
             esc_html__('Maintenance', 'quaintenance'),
             esc_html__('Maintenance', 'quaintenance'),
             $needed_caps,
-            self::$main_page_slug,
-            ['Quaintenance_Setting', 'display_menu_page']
+            $this->main_page_slug,
+            [$this, 'display_menu_page']
         );
 
         // add_submenu_page(
-        //     self::$main_page_slug,
+        //     $this->$main_page_slug,
         //     esc_html__('Einstellungen', 'quaintenance'),
         //     esc_html__('Einstellungen', 'quaintenance'),
         //     $needed_caps,
@@ -79,24 +79,24 @@ class Quaintenance_Setting
      *
      * @return void
      */
-    public static function display_menu_page(): void
+    public function display_menu_page(): void
     {
-        $slug = self::$main_page_slug;
+        $slug = $this->main_page_slug;
         require_once QUAINTENANCE_DIR . "/admin/partials/$slug.php";
     }
 
-    public static function register_settings(): void
+    public function register_settings(): void
     {
         register_setting(
-            self::$main_option_group,
-            self::$main_option_name,
+            $this->main_option_group,
+            $this->main_option_name,
             [
-                'sanitize_callback' => ['Quaintenance_Setting', 'sanitize'],
+                'sanitize_callback' => [$this, 'sanitize'],
             ]
         );
     }
 
-    public static function add_settings_objects(): void
+    public function add_settings_objects(): void
     {
         /**
          * Section
@@ -104,8 +104,8 @@ class Quaintenance_Setting
         add_settings_section(
             'Quaintenance_section_general',
             esc_html__('Allgemein', 'quaintenance'),
-            ['Quaintenance_Setting', 'display_section_general'],
-            self::$main_page_slug
+            [$this, 'display_section_general'],
+            $this->main_page_slug
         );
 
         /**
@@ -114,8 +114,8 @@ class Quaintenance_Setting
         add_settings_field(
             'Quaintenance_field_mode',
             esc_html__('Maintenance Modus', 'quaintenance'),
-            ['Quaintenance_Setting', 'display_field_checkbox'],
-            self::$main_page_slug,
+            [$this, 'display_field_checkbox'],
+            $this->main_page_slug,
             'Quaintenance_section_general',
             ['id' => 'mode']
         );
@@ -126,22 +126,22 @@ class Quaintenance_Setting
         add_settings_field(
             'slug',
             esc_html__('Permalink', 'quaintenance'),
-            ['Quaintenance_Setting', 'display_field_text'],
-            self::$main_page_slug,
+            [$this, 'display_field_text'],
+            $this->main_page_slug,
             'Quaintenance_section_general',
             ['id' => 'slug']
         );
     }
 
-    public static function display_section_general(): void
+    public function display_section_general(): void
     {
         esc_html_e('Allgemeine Einstellungen zum Maintenance Modus', 'quaintenance');
     }
 
-    public static function display_field_radio($args): void
+    public function display_field_radio($args): void
     {
-        $options = get_option(self::$main_option_name);
-        $option_name = self::$main_option_name;
+        $options = get_option($this->main_option_name);
+        $option_name = $this->main_option_name;
 
         $id = $args['id'] ?? '';
 
@@ -165,10 +165,10 @@ class Quaintenance_Setting
     }
 
 
-    public static function display_field_checkbox($args): void
+    public function display_field_checkbox($args): void
     {
-        $options = get_option(self::$main_option_name);
-        $option_name = self::$main_option_name;
+        $options = get_option($this->main_option_name);
+        $option_name = $this->main_option_name;
 
         $id = $args['id'] ?? '';
 
@@ -185,10 +185,10 @@ class Quaintenance_Setting
         printf($format, $id, 'enabled', $type, $option_name, $labels, $checked);
     }
 
-    public static function display_field_text($args): void
+    public function display_field_text($args): void
     {
-        $options = self::get_option();
-        $option_name = self::$main_option_name;
+        $options = $this->get_option();
+        $option_name = $this->main_option_name;
 
         $id = $args['id'] ?? '';
 
@@ -204,9 +204,9 @@ class Quaintenance_Setting
         printf($format, $id, $value, $type, $option_name, $labels);
     }
 
-    private static function get_option()
+    private function get_option()
     {
-        return get_option(self::$main_option_name);
+        return get_option($this->main_option_name);
     }
 
     public function sanitize($input)

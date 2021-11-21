@@ -42,6 +42,15 @@ class Quaintenance_Admin
 	private $version;
 
 	/**
+	 * The settings controller.
+	 *
+	 * @since 1.0.0
+	 * @access private
+	 * @var Quaintenance_Setting The settings controller class.
+	 */
+	private $setting;
+
+	/**
 	 * Initialize the class and set its properties.
 	 *
 	 * @since    1.0.0
@@ -53,6 +62,7 @@ class Quaintenance_Admin
 
 		$this->plugin_name = $plugin_name;
 		$this->version = $version;
+		$this->setting = new Quaintenance_Setting();
 	}
 
 	/**
@@ -114,12 +124,12 @@ class Quaintenance_Admin
 	 */
 	public function admin_menu(): void
 	{
-		Quaintenance_Setting::add_menus();
+		$this->setting->add_menus();
 	}
 
 	public function admin_init(): void
 	{
-		Quaintenance_Setting::register_settings();
-		Quaintenance_Setting::add_settings_objects();
+		$this->setting->register_settings();
+		$this->setting->add_settings_objects();
 	}
 }
