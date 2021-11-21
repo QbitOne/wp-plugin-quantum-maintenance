@@ -112,7 +112,7 @@ class Quaintenance_Public
 		$mode = $option['mode'] ?? '';
 
 		if (!($mode === 'enabled')) return;
-		if (is_admin() && current_user_can('manage_options')) return;
+		if (is_admin() || current_user_can('manage_options')) return;
 
 		if (empty($slug) || is_page($slug)) :
 			$this->deliver_maintenance_mode();
