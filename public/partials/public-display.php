@@ -14,6 +14,7 @@
 
 get_header();
 ?>
+
 <h2 class="wide-max-width">Currently under construction</h2>
 
 

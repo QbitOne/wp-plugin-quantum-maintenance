@@ -108,20 +108,25 @@ class Quaintenance_Public
 
 		$option = get_option('quaintenance-main-option-name');
 
-		$slug = $option['slug'] ?? null;
+		$slug = $option['slug'] ?? '';
 		$mode = $option['mode'] ?? '';
 
-		if (!is_admin() && !current_user_can('manage_options')) {
+		if (!($mode === 'enabled')) return;
+		if (is_admin() && current_user_can('manage_options')) return;
 
-			if (!is_null($slug) && is_page($slug) && $mode === 'enabled') {
+		if (empty($slug) || is_page($slug)) :
+			$this->deliver_maintenance_mode();
+			die();
+		endif;
+	}
 
-				header($_SERVER["SERVER_PROTOCOL"] . ' 503 Service Temporarily Unavailable', true, 503);
-				header('Content-Type: text/html; charset=utf-8');
-				if (file_exists(QUAINTENANCE_DIR . 'public/partials/quaintenance-public-display.php')) {
-					require_once(QUAINTENANCE_DIR . 'public/partials/quaintenance-public-display.php');
-				}
-				die();
-			}
-		}
+	public function deliver_maintenance_mode(): void
+	{
+		header($_SERVER["SERVER_PROTOCOL"] . ' 503 Service Temporarily Unavailable', true, 503);
+		header('Content-Type: text/html; charset=utf-8');
+
+		if (file_exists(QUAINTENANCE_DIR . 'public/partials/public-display.php')) :
+			require_once(QUAINTENANCE_DIR . 'public/partials/public-display.php');
+		endif;
 	}
 }
