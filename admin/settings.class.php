@@ -237,9 +237,17 @@ class Quaintenance_Setting
         printf($format, $id, $value, $type, $option_name, $labels);
     }
 
-    private function get_option()
+    public function get_option()
     {
         return get_option($this->main_option_name);
+    }
+
+    public function valid_value($arg)
+    {
+        $options = $this->get_option($arg);
+        if (isset($options[$arg])) :
+            return sanitize_text_field($options[$arg]);
+        endif;
     }
 
     public function sanitize($input)

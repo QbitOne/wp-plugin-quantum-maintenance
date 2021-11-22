@@ -51,4 +51,18 @@ class Quaintenance_Admin_Bar
         $this->plugin_name = $plugin_name;
         $this->version = $version;
     }
+
+    public function initialize($wp_admin_bar): void
+    {
+        // add a parent item
+        $args = array(
+            'id'        => 'quaintenance',
+            'title'     => 'Activ Maintenance',
+            'parent'    => 'top-secondary',
+            'meta'      => [
+                'class'     => 'quai-admin-bar',
+            ],
+        );
+        $wp_admin_bar->add_node($args);
+    }
 }

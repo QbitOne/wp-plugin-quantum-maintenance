@@ -2,3 +2,7 @@
  * All of the CSS for your admin-specific functionality should be
  * included in this file.
  */
+
+#wpadminbar .quai-admin-bar .ab-item {
+  color: #ff0000;
+}
