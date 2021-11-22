@@ -35,6 +35,7 @@ if (!defined('WPINC')) {
 define('QUAINTENANCE_VERSION', '1.0.2');
 
 define('QUAINTENANCE_DIR', trailingslashit(plugin_dir_path(__FILE__)));
+define('QUAINTENANCE_URL', trailingslashit(plugin_dir_url(__FILE__)));
 
 /**
  * The code that runs during plugin activation.
