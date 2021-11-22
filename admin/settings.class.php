@@ -7,7 +7,7 @@
  * @since      1.0.0
  *
  * @package    Quaintenance
- * @subpackage Quaintenance/admin/setting
+ * @subpackage Quaintenance/admin
  */
 
 /**
