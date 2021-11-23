@@ -64,7 +64,7 @@ class Quaintenance_Setting
      * @access private
      * @since 1.0.0
      */
-    private $main_option_name = 'quaintenance-main-option-name';
+    private static $main_option_name = 'quaintenance-main-option-name';
 
     /**
      * Initialize the class and set its properties.
@@ -122,7 +122,7 @@ class Quaintenance_Setting
     {
         register_setting(
             $this->main_option_group,
-            $this->main_option_name,
+            self::$main_option_name,
             [
                 'sanitize_callback' => [$this, 'sanitize'],
             ]
@@ -173,8 +173,8 @@ class Quaintenance_Setting
 
     public function display_field_radio($args): void
     {
-        $options = get_option($this->main_option_name);
-        $option_name = $this->main_option_name;
+        $options = self::get_option();
+        $option_name = self::$main_option_name;
 
         $id = $args['id'] ?? '';
 
@@ -200,8 +200,8 @@ class Quaintenance_Setting
 
     public function display_field_checkbox($args): void
     {
-        $options = get_option($this->main_option_name);
-        $option_name = $this->main_option_name;
+        $options = self::get_option();
+        $option_name = self::$main_option_name;
 
         $id = $args['id'] ?? '';
 
@@ -220,8 +220,8 @@ class Quaintenance_Setting
 
     public function display_field_text($args): void
     {
-        $options = $this->get_option();
-        $option_name = $this->main_option_name;
+        $options = self::get_option();
+        $option_name = self::$main_option_name;
 
         $id = $args['id'] ?? '';
 
@@ -237,14 +237,14 @@ class Quaintenance_Setting
         printf($format, $id, $value, $type, $option_name, $labels);
     }
 
-    public function get_option()
+    public static function get_option()
     {
-        return get_option($this->main_option_name);
+        return get_option(self::$main_option_name);
     }
 
     public function valid_value($arg)
     {
-        $options = $this->get_option($arg);
+        $options = self::get_option($arg);
         if (isset($options[$arg])) :
             return sanitize_text_field($options[$arg]);
         endif;
