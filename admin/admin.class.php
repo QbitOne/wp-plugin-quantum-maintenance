@@ -51,6 +51,15 @@ class Quaintenance_Admin
 	private $setting;
 
 	/**
+	 * The theme file.
+	 *
+	 * @param string The theme file.
+	 * @access private
+	 * @since 1.1.0
+	 */
+	private static $theme_file = 'quaintenance.php';
+
+	/**
 	 * Initialize the class and set its properties.
 	 *
 	 * @since    1.0.0
@@ -62,6 +71,7 @@ class Quaintenance_Admin
 
 		$this->plugin_name = $plugin_name;
 		$this->version = $version;
+
 		$this->setting = new Quaintenance_Setting($plugin_name, $version);
 		$this->admin_bar = new Quaintenance_Admin_Bar($plugin_name, $version);
 	}
@@ -152,5 +162,20 @@ class Quaintenance_Admin
 		if ($this->setting->valid_value('mode') === 'enabled') :
 			$this->admin_bar->initialize($wp_admin_bar);
 		endif;
+	}
+
+	public static function theme_file_exist(): bool
+	{
+		$path = trailingslashit(get_stylesheet_directory()) . self::$theme_file;
+		if (file_exists($path)) :
+			return true;
+		endif;
+
+		return false;
+	}
+
+	public static function get_theme_file(): string
+	{
+		return trailingslashit(get_stylesheet_directory()) . self::$theme_file;
 	}
 }
