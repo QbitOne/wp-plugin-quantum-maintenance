@@ -3,11 +3,25 @@
 /**
  * Update Checker Class
  *
- * @since 2.7.0
+ * @link       https://qbitone.de/
+ * @since      1.0.0
+ *
+ * @package    Quaintenance
+ * @subpackage Quaintenance/includes
  */
 
 if (!defined('ABSPATH')) exit; // Exit if accessed directly
 
+/**
+ * Update Checker Class
+ *
+ * @link       https://qbitone.de/
+ * @since      1.0.0
+ *
+ * @package    Quaintenance
+ * @subpackage Quaintenance/includes
+ * @author Andreas Geyer <andreas@qbitone.de>
+ */
 if (!class_exists('Quaintenance_Update_Checker')) :
     /**
      * Update Checker Class

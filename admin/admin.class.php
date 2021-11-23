@@ -51,6 +51,15 @@ class Quaintenance_Admin
 	private $setting;
 
 	/**
+	 * The theme file.
+	 *
+	 * @param string The theme file.
+	 * @access private
+	 * @since 1.1.0
+	 */
+	private static $theme_file = 'quaintenance.php';
+
+	/**
 	 * Initialize the class and set its properties.
 	 *
 	 * @since    1.0.0
@@ -62,7 +71,9 @@ class Quaintenance_Admin
 
 		$this->plugin_name = $plugin_name;
 		$this->version = $version;
+
 		$this->setting = new Quaintenance_Setting($plugin_name, $version);
+		$this->admin_bar = new Quaintenance_Admin_Bar($plugin_name, $version);
 	}
 
 	/**
@@ -85,7 +96,7 @@ class Quaintenance_Admin
 		 * class.
 		 */
 
-		// wp_enqueue_style($this->plugin_name, plugin_dir_url(__FILE__) . 'css/admin.css', array(), $this->version, 'all');
+		wp_enqueue_style($this->plugin_name, QUAINTENANCE_URL . 'admin/css/admin.css', array(), $this->version, 'all');
 	}
 
 	/**
@@ -127,9 +138,44 @@ class Quaintenance_Admin
 		$this->setting->add_menus();
 	}
 
+	/**
+	 * Undocumented function
+	 *
+	 * @return void
+	 * @since 1.0.0
+	 */
 	public function admin_init(): void
 	{
 		$this->setting->register_settings();
 		$this->setting->add_settings_objects();
+	}
+
+	/**
+	 * Undocumented function
+	 *
+	 * @return void
+	 * @since 1.1.0
+	 */
+	public function admin_bar_menu($wp_admin_bar): void
+	{
+		$options = $this->setting->get_option();
+		if ($this->setting->valid_value('mode') === 'enabled') :
+			$this->admin_bar->initialize($wp_admin_bar);
+		endif;
+	}
+
+	public static function theme_file_exist(): bool
+	{
+		$path = trailingslashit(get_stylesheet_directory()) . self::$theme_file;
+		if (file_exists($path)) :
+			return true;
+		endif;
+
+		return false;
+	}
+
+	public static function get_theme_file(): string
+	{
+		return trailingslashit(get_stylesheet_directory()) . self::$theme_file;
 	}
 }

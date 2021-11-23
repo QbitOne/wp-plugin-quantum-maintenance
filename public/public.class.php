@@ -117,7 +117,7 @@ class Quaintenance_Public
 
 
 		global $post;
-		$current_slug = $post->post_name;
+		$current_slug = is_object($post) ? $post->post_name : false;
 
 		if (empty($slug) || $slug === $current_slug) :
 			$this->deliver_maintenance_mode();
@@ -130,8 +130,12 @@ class Quaintenance_Public
 		header($_SERVER["SERVER_PROTOCOL"] . ' 503 Service Temporarily Unavailable', true, 503);
 		header('Content-Type: text/html; charset=utf-8');
 
-		if (file_exists(QUAINTENANCE_DIR . 'public/partials/public-display.php')) :
-			require_once(QUAINTENANCE_DIR . 'public/partials/public-display.php');
+		$plugin_file = QUAINTENANCE_DIR . 'public/partials/public-display.php';
+
+		if (Quaintenance_Admin::theme_file_exist()) :
+			require_once(Quaintenance_Admin::get_theme_file());
+		elseif (file_exists($plugin_file)) :
+			require_once($plugin_file);
 		endif;
 	}
 }

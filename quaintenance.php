@@ -14,7 +14,7 @@
  * Plugin Name:       Quaintenance
  * Plugin URI:        https://qbitone.de/
  * Description:       Custom Maintenance Mode
- * Version:           1.0.2
+ * Version:           1.1.0
  * Author:            Andreas Geyer
  * Author URI:        https://qbitone.de/
  * License:           GPL-2.0+
@@ -32,9 +32,10 @@ if (!defined('WPINC')) {
  * Currently plugin version.
  * @link https://semver.org
  */
-define('QUAINTENANCE_VERSION', '1.0.2');
+define('QUAINTENANCE_VERSION', '1.1.0');
 
 define('QUAINTENANCE_DIR', trailingslashit(plugin_dir_path(__FILE__)));
+define('QUAINTENANCE_URL', trailingslashit(plugin_dir_url(__FILE__)));
 
 /**
  * The code that runs during plugin activation.

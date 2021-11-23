@@ -136,6 +136,11 @@ class Quaintenance
 		require_once QUAINTENANCE_DIR . 'admin/settings.class.php';
 
 		/**
+		 * The class responsible for adding admin bar menus
+		 */
+		require_once QUAINTENANCE_DIR . 'admin/admin-bar.class.php';
+
+		/**
 		 * The class responsible for defining all actions that occur in the public-facing
 		 * side of the site.
 		 */
@@ -179,6 +184,8 @@ class Quaintenance
 
 		$this->loader->add_action('admin_menu', $plugin_admin, 'admin_menu');
 		$this->loader->add_action('admin_init', $plugin_admin, 'admin_init');
+
+		$this->loader->add_action('admin_bar_menu', $plugin_admin, 'admin_bar_menu');
 	}
 
 	/**
