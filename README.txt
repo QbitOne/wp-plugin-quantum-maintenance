@@ -26,7 +26,7 @@ This plugin helps you managing maintenance work on your website. You can activat
 == Changelog ==
 
 = 1.1.0 =
-* a quaintenance.php file in current theme root directory can be used as template file in maintenace mode
+* a quaintenance.php file in current theme root directory can be used as template file in maintenance mode
 
 = 1.0.2 =
 * fixes the plugin update checker
