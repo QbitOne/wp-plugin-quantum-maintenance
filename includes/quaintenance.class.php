@@ -123,7 +123,7 @@ class Quaintenance
 		/**
 		 * The class responsible for plugin updates.
 		 */
-		require_once QUAINTENANCE_DIR . 'includes/update-checker.class.php';
+		require_once QUAINTENANCE_DIR . 'includes/updater.class.php';
 
 		/**
 		 * The class responsible for defining all actions that occur in the admin area.
@@ -253,6 +253,7 @@ class Quaintenance
 
 	public function init_update_checker()
 	{
-		$this->update_checker = new Quaintenance_Update_Checker($this->get_plugin_name(), $this->get_version());
+		$request_url = 'https://dev.qbitone.de/files/plugins/quaintenance/quaintenance.zip';
+		$this->update_checker = new Quantum\Updater($request_url);
 	}
 }
